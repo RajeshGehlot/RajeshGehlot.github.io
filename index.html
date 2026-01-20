@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajesh Gehlot | Senior Odoo Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --brand-primary: #6366f1;
+            --brand-secondary: #a855f7;
+            --bg-deep: #030712;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg-deep);
+            color: #94a3b8;
+            scroll-behavior: smooth;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .accent-gradient {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+        }
+
+        .glow-mesh {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--brand-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after { width: 100%; }
+        
+        .version-badge {
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            border: 1px solid rgba(168, 85, 247, 0.2);
+        }
+    </style>
+</head>
+<body class="selection:bg-indigo-500/30">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 top-0 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4 glass-card rounded-2xl">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 accent-gradient rounded-lg flex items-center justify-center text-white font-bold">R</div>
+                <span class="text-white font-bold tracking-tight text-xl">GEHLOT</span>
+            </div>
+            <div class="hidden md:flex gap-10 text-sm font-medium tracking-wide">
+                <a href="#about" class="nav-link hover:text-white">Expertise</a>
+                <a href="#experience" class="nav-link hover:text-white">Journey</a>
+                <a href="#projects" class="nav-link hover:text-white">Showcase</a>
+                <a href="#education" class="nav-link hover:text-white">Academics</a>
+            </div>
+            <a href="mailto:rajeshgehlot@example.com" class="hidden md:block px-6 py-2.5 accent-gradient text-white text-xs font-bold rounded-full hover:scale-105 transition active:scale-95 shadow-lg shadow-indigo-500/20">
+                LET'S TALK
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="glow-mesh top-[-100px] left-[-100px]"></div>
+        <div class="glow-mesh bottom-[-100px] right-[-100px]" style="background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);"></div>
+
+        <div class="max-w-5xl text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full version-badge mb-8">
+                <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+                <span class="text-xs font-bold text-indigo-300 uppercase tracking-[0.2em]">Odoo v10 — v18 Architect</span>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-extrabold text-white mb-8 tracking-tighter leading-tight">
+                Architecting <span class="text-gradient">Scalable</span> <br/>
+                Digital Ecosystems.
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light mb-12">
+                With <span class="text-white font-medium">4.5 years</span> in the Odoo trenches, I bridge the gap between complex business logic and high-performance technical execution.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#" class="px-10 py-4 bg-white text-black font-bold rounded-xl hover:bg-indigo-50 transition-all flex items-center gap-3 group">
+                    View Portfolio <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition"></i>
+                </a>
+                <div class="flex items-center gap-6 px-4">
+                    <a href="#" class="text-slate-400 hover:text-white transition text-xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-white transition text-xl"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-white transition text-xl"><i class="fab fa-bitbucket"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Blocks -->
+    <section id="about" class="py-32 max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1">
+                <h2 class="text-xs font-bold text-indigo-500 uppercase tracking-[0.3em] mb-4">Core Competencies</h2>
+                <h3 class="text-4xl font-bold text-white mb-6 tracking-tight leading-snug">The Technical <br/>Mastery.</h3>
+                <p class="text-slate-500 leading-relaxed mb-8">Expertise in transforming legacy monolithic systems into modular, high-availability ERP solutions.</p>
+                <div class="p-6 rounded-2xl border border-indigo-500/20 bg-indigo-500/5">
+                    <p class="text-white font-bold mb-2 uppercase text-xs tracking-widest">Version Mastery</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs font-mono text-indigo-400">v10</span>
+                        <span class="text-xs font-mono text-indigo-400">→</span>
+                        <span class="text-xs font-mono text-indigo-400">v18 Enterprise</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2 grid md:grid-cols-2 gap-6">
+                <div class="p-8 glass-card rounded-3xl">
+                    <i class="fas fa-microchip text-indigo-500 text-2xl mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-4">Backend Engine</h4>
+                    <p class="text-sm leading-relaxed text-slate-500">Multiprocessing Python, PostgreSQL optimization, and complex Odoo ORM customization.</p>
+                </div>
+                <div class="p-8 glass-card rounded-3xl">
+                    <i class="fas fa-terminal text-purple-500 text-2xl mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-4">Frontend Aura</h4>
+                    <p class="text-sm leading-relaxed text-slate-500">Creating immersive interfaces using OWL (Odoo Website Library), JavaScript, and QWeb.</p>
+                </div>
+                <div class="p-8 glass-card rounded-3xl">
+                    <i class="fas fa-project-diagram text-blue-500 text-2xl mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-4">API Architecture</h4>
+                    <p class="text-sm leading-relaxed text-slate-500">Seamlessly syncing with WooCommerce, Quickbooks, ShipStation, and payment gateways.</p>
+                </div>
+                <div class="p-8 glass-card rounded-3xl">
+                    <i class="fas fa-server text-teal-500 text-2xl mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-4">DevOps & Cloud</h4>
+                    <p class="text-sm leading-relaxed text-slate-500">Managing AWS/Ubuntu production environments, performance tuning, and automated backups.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience" class="py-32 bg-[#050a18]/50">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <h2 class="text-4xl font-bold text-white tracking-tight">Professional Trajectory</h2>
+                <div class="h-1 w-20 accent-gradient mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="space-y-16">
+                <!-- Bista -->
+                <div class="relative grid md:grid-cols-5 gap-8 group">
+                    <div class="md:col-span-1 font-mono text-sm text-indigo-500 py-2">Aug 2024 — Present</div>
+                    <div class="md:col-span-4 p-8 glass-card rounded-3xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 accent-gradient opacity-5 rotate-45 transform translate-x-16 -translate-y-16"></div>
+                        <h4 class="text-2xl font-bold text-white mb-2 leading-none">Odoo Technical Consultant</h4>
+                        <p class="text-indigo-400 font-semibold text-sm mb-6 uppercase tracking-widest">Bista Solutions</p>
+                        <ul class="space-y-3 text-sm text-slate-400">
+                            <li class="flex gap-3"><span class="text-indigo-500">/</span> Specializing in Odoo v18 migrations and high-volume business logic.</li>
+                            <li class="flex gap-3"><span class="text-indigo-500">/</span> Architecting unified dashboards for multi-country operations.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pragmatic -->
+                <div class="relative grid md:grid-cols-5 gap-8 group">
+                    <div class="md:col-span-1 font-mono text-sm text-slate-600 py-2">2023 — 2024</div>
+                    <div class="md:col-span-4 p-8 glass-card rounded-3xl">
+                        <h4 class="text-2xl font-bold text-white mb-2">Senior Odoo Developer <span class="text-sm font-normal text-slate-500 ml-2">(Team Lead)</span></h4>
+                        <p class="text-purple-400 font-semibold text-sm mb-6 uppercase tracking-widest">Pragmatic Techsoft</p>
+                        <p class="text-sm text-slate-500 leading-relaxed">Mentored 3+ junior devs while leading full-cycle Odoo v17 deployments. Perfecting the art of requirement gathering and agile delivery.</p>
+                    </div>
+                </div>
+
+                <!-- Geminate -->
+                <div class="relative grid md:grid-cols-5 gap-8 group">
+                    <div class="md:col-span-1 font-mono text-sm text-slate-600 py-2">2021 — 2023</div>
+                    <div class="md:col-span-4 p-8 glass-card rounded-3xl">
+                        <h4 class="text-2xl font-bold text-white mb-2">Full Stack Developer</h4>
+                        <p class="text-blue-400 font-semibold text-sm mb-6 uppercase tracking-widest">Geminate Consultancy</p>
+                        <p class="text-sm text-slate-500 leading-relaxed">Hands-on customization and widget development for Odoo v10 to v16. Mastered the core PostgreSQL database schema.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Showcase -->
+    <section id="projects" class="py-32 max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-xs font-bold text-indigo-500 uppercase tracking-[0.3em] mb-4">The Showcase</h2>
+        <h3 class="text-5xl font-extrabold text-white mb-20 tracking-tight">Proof of Work.</h3>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+            <!-- P1 -->
+            <div class="group relative">
+                <div class="p-10 h-full glass-card rounded-[40px] border-b-4 border-indigo-500 active:scale-95 transition">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 mb-8 text-2xl group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                        <i class="fas fa-boxes-stacked"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Manufacturing v18</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-10">Advanced ERP for Die-cutting industries. Automated entire BOM-to-Finish-Good lifecycle with Quality Assurance checkpoints.</p>
+                    <div class="flex gap-2">
+                        <span class="text-[10px] border border-slate-700 px-3 py-1 rounded-full text-slate-400 font-bold uppercase">MRP</span>
+                        <span class="text-[10px] border border-slate-700 px-3 py-1 rounded-full text-slate-400 font-bold uppercase">Inventory</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- P2 -->
+            <div class="group relative">
+                <div class="p-10 h-full glass-card rounded-[40px] border-b-4 border-purple-500 transition">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-500 mb-8 text-2xl group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                        <i class="fas fa-mobile-screen-button"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Service Connect</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-10">Hyper-local service booking system with technician live tracking, integrated wallet, and Push API notifications.</p>
+                    <div class="flex gap-2">
+                        <span class="text-[10px] border border-slate-700 px-3 py-1 rounded-full text-slate-400 font-bold uppercase">Geolocation</span>
+                        <span class="text-[10px] border border-slate-700 px-3 py-1 rounded-full text-slate-400 font-bold uppercase">Odoo-Mobile</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- P3 -->
+            <div class="group relative">
+                <div class="p-10 h-full glass-card rounded-[40px] border-b-4 border-blue-500 transition">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 mb-8 text-2xl group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Prime Hotel PMS</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-10">A centralized dashboard for hotel operations including channel management, room availability grid, and restaurant integration.</p>
+                    <div class="flex gap-2">
+                        <span class="text-[10px] border border-slate-700 px-3 py-1 rounded-full text-slate-400 font-bold uppercase">Hotellier</span>
+                        <span class="text-[10px] border border-slate-700 px-3 py-1 rounded-full text-slate-400 font-bold uppercase">POS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="py-32 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-center text-3xl font-extrabold text-white mb-16 tracking-tight uppercase tracking-[0.2em] text-sm">Academic Roots</h2>
+            <div class="overflow-hidden glass-card rounded-[32px] border border-white/5">
+                <table class="w-full text-left">
+                    <thead class="bg-indigo-500/5 text-indigo-300 text-xs uppercase font-bold tracking-widest">
+                        <tr>
+                            <th class="px-10 py-6">Milestone</th>
+                            <th class="px-10 py-6">Entity</th>
+                            <th class="px-10 py-6 text-right">Merit</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5 text-sm">
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-10 py-8 font-bold text-white">BSc in IT</td>
+                            <td class="px-10 py-8 text-slate-500">Jai Narain Vyas University <span class="block text-[10px] text-slate-600">Class of 2020</span></td>
+                            <td class="px-10 py-8 text-right font-mono text-indigo-400">63%</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-10 py-8 font-bold text-white">Higher Secondary</td>
+                            <td class="px-10 py-8 text-slate-500">BSER Rajasthan <span class="block text-[10px] text-slate-600">Class of 2017</span></td>
+                            <td class="px-10 py-8 text-right font-mono text-indigo-400">58%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <footer class="py-20 border-t border-white/5 text-center px-6">
+        <div class="max-w-3xl mx-auto glass-card p-16 rounded-[50px] relative overflow-hidden">
+            <div class="absolute inset-0 accent-gradient opacity-10"></div>
+            <h3 class="text-4xl font-bold text-white mb-6 relative">Ready to optimize your business?</h3>
+            <p class="text-slate-500 mb-10 relative">I'm currently open to new Odoo v18 projects and consulting roles.</p>
+            <a href="mailto:contact@rajeshgehlot.com" class="relative px-12 py-5 accent-gradient text-white font-bold rounded-2xl hover:shadow-2xl hover:shadow-indigo-500/40 transition inline-block">
+                INITIATE CONTACT
+            </a>
+        </div>
+        <p class="mt-20 text-[10px] uppercase font-bold text-slate-700 tracking-[0.5em]">© 2024 Rajesh Gehlot • Designed for Impact</p>
+    </footer>
+
+</body>
+</html>
