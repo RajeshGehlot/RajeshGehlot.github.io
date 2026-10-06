@@ -1,401 +1,608 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rajesh Gehlot | Full Stack Engineer</title>
+    <title>Rajesh Gehlot | Senior Full Stack Odoo Developer</title>
+    <meta name="description" content="Personal portfolio and resume of Rajesh Gehlot, Senior Full Stack Odoo Developer with 5.5+ years of experience in Python, Odoo ERP (v10-v19), OWL JS, PostgreSQL, and REST API integrations.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        indigo: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         
-        :root {
-            --brand-primary: #4f46e5;
-            --brand-glow: rgba(79, 70, 229, 0.4);
-            --bg-dark: #020617;
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            overflow-x: hidden;
         }
 
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--bg-dark);
-            color: #94a3b8;
-            scroll-behavior: smooth;
-        }
-
-        .glass-nav {
-            background: rgba(2, 6, 23, 0.8);
+        .navbar-blur {
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .hero-gradient {
-            background: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.15) 0%, transparent 50%);
+        .card-custom {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+            transition: all 0.25s ease-in-out;
         }
 
-        .project-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .card-custom:hover {
+            border-color: #c7d2fe;
+            box-shadow: 0 12px 20px -4px rgba(79, 70, 229, 0.08);
+            transform: translateY(-3px);
         }
 
-        .project-card:hover {
-            border-color: var(--brand-primary);
-            box-shadow: 0 0 30px var(--brand-glow);
-            transform: translateY(-8px);
-        }
-
-        .skill-tag {
-            background: rgba(79, 70, 229, 0.1);
-            border: 1px solid rgba(79, 70, 229, 0.2);
-            color: #a5b4fc;
-        }
-
-        .text-white-gradient {
-            background: linear-gradient(to bottom right, #fff 40%, #64748b 100%);
+        .gradient-text {
+            background: linear-gradient(135deg, #0f172a 0%, #4338ca 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .stat-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
-            border: 1px solid rgba(255,255,255,0.05);
+        /* Scroll Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Custom scrollbar */
+        .animate-fade-in { animation: fadeInUp 0.5s ease-out forwards; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
-<body class="selection:bg-indigo-500/30">
+<body class="selection:bg-indigo-100 selection:text-indigo-900 min-h-screen flex flex-col antialiased">
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 top-0 glass-nav">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-600/30">RG</div>
-                <div class="hidden sm:block">
-                    <h2 class="text-white font-bold leading-none tracking-tight">Rajesh Gehlot</h2>
-                    <p class="text-[10px] uppercase tracking-widest text-indigo-400 mt-1 font-bold">Full Stack Odoo Expert</p>
+    <!-- Header Navigation -->
+    <header class="fixed w-full z-50 top-0 navbar-blur">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white font-bold flex items-center justify-center text-base shadow-sm">
+                    RG
                 </div>
-            </div>
-            <div class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide">
-                <a href="#summary" class="hover:text-white transition">Summary</a>
-                <a href="#projects" class="hover:text-white transition">Expertise</a>
-                <a href="#experience" class="hover:text-white transition">Experience</a>
-                <a href="#education" class="hover:text-white transition">Education</a>
-            </div>
-            <a href="mailto:i.rajeshgehlot@gmail.com" class="px-5 py-2.5 bg-white text-black text-xs font-black rounded-lg hover:bg-indigo-50 transition active:scale-95">
-                HIRE ME
+                <div>
+                    <h1 class="text-slate-900 font-extrabold text-base leading-none">Rajesh Gehlot</h1>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">Full Stack Odoo Developer</p>
+                </div>
             </a>
-        </div>
-    </nav>
 
-    <!-- Hero -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden hero-gradient">
-        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
-        <div class="max-w-5xl mx-auto px-6 text-center z-10">
-            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-                </span>
-                <span class="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-300">Available for Enterprise Projects</span>
-            </div>
-            <h1 class="text-5xl md:text-8xl font-extrabold text-white-gradient mb-8 leading-[1.1] tracking-tighter">
-                Odoo Architecting <br/> <span class="text-indigo-500">v10 through v18.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-12">
-                With <span class="text-white font-bold">4.5 Years</span> of full-stack engineering, I specialize in high-stakes migrations and building iron-clad ERP systems for manufacturing, retail, and hospitality.
-            </p>
-            <div class="flex flex-wrap justify-center gap-5">
-                <a href="#projects" class="px-8 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-500 shadow-xl shadow-indigo-600/20 transition-all flex items-center gap-2">
-                    View My Portflio <i class="fas fa-chevron-down text-xs"></i>
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+                <a href="#about" class="hover:text-indigo-600 transition-colors">About</a>
+                <a href="#experience" class="hover:text-indigo-600 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-indigo-600 transition-colors">Projects</a>
+                <a href="#skills" class="hover:text-indigo-600 transition-colors">Skills & Tools</a>
+                <a href="#achievements" class="hover:text-indigo-600 transition-colors">Achievements</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="mailto:i.rajeshgehlot@gmail.com" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg shadow-sm transition-all flex items-center gap-2">
+                    <i class="far fa-envelope"></i> Get in Touch
                 </a>
-                <div class="flex items-center gap-4 px-6 border-l border-slate-800 ml-2">
-                    <a href="https://www.linkedin.com/in/gehlotrajesh/" class="text-slate-400 hover:text-white transition text-xl"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/RajeshGehlot" class="text-slate-400 hover:text-white transition text-xl"><i class="fab fa-github"></i></a>
-                </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Professional Stats -->
-    <section id="summary" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="stat-card p-8 rounded-2xl text-center">
-                    <p class="text-4xl font-black text-white mb-2">4.5</p>
-                    <p class="text-xs uppercase tracking-widest text-slate-500">Years Experience</p>
+    <main class="flex-grow pt-24">
+        
+        <!-- Hero Section -->
+        <section id="about" class="py-16 md:py-24 px-6 border-b border-slate-200/80">
+            <div class="max-w-5xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Available for Odoo ERP Projects & Customizations
                 </div>
-                <div class="stat-card p-8 rounded-2xl text-center">
-                    <p class="text-4xl font-black text-white mb-2">5+</p>
-                    <p class="text-xs uppercase tracking-widest text-slate-500">Core Industries</p>
+
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                    Hi, I'm Rajesh Gehlot. <br/>
+                    <span class="gradient-text">Senior Full Stack Odoo Developer.</span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed mb-8">
+                    I have <strong class="text-slate-900 font-bold">5.5+ years of experience</strong> building, customizing, and upgrading Odoo ERP applications (from <strong class="text-slate-900 font-bold">version 10 through 19</strong>). I specialize in Python backend ORM logic, OWL JS frontend widgets, PostgreSQL database performance tuning, and third-party REST API integrations for government, manufacturing, retail, and hospitality sectors.
+                </p>
+
+                <!-- Quick Action Buttons -->
+                <div class="flex flex-wrap items-center gap-4 mb-16">
+                    <a href="#projects" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-sm transition-all text-sm flex items-center gap-2">
+                        View Projects <i class="fas fa-arrow-down text-xs"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/gehlotrajesh" target="_blank" rel="noopener" class="px-5 py-3 bg-white hover:bg-slate-100 text-slate-700 font-semibold rounded-xl border border-slate-300 transition-all text-sm flex items-center gap-2">
+                        <i class="fab fa-linkedin text-indigo-600"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/RajeshGehlot" target="_blank" rel="noopener" class="px-5 py-3 bg-white hover:bg-slate-100 text-slate-700 font-semibold rounded-xl border border-slate-300 transition-all text-sm flex items-center gap-2">
+                        <i class="fab fa-github text-slate-800"></i> GitHub
+                    </a>
                 </div>
-                <div class="stat-card p-8 rounded-2xl text-center">
-                    <p class="text-4xl font-black text-white mb-2">v18</p>
-                    <p class="text-xs uppercase tracking-widest text-slate-500">Latest Migration</p>
-                </div>
-                <div class="stat-card p-8 rounded-2xl text-center">
-                    <p class="text-4xl font-black text-white mb-2">100%</p>
-                    <p class="text-xs uppercase tracking-widest text-slate-500">End-to-End Success</p>
+
+                <!-- Highlight Stats Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="card-custom p-5 rounded-xl">
+                        <div class="text-3xl font-extrabold text-indigo-600 mb-1">5.5+</div>
+                        <div class="text-xs font-bold uppercase text-slate-500 tracking-wider">Years Experience</div>
+                        <div class="text-xs text-slate-400 mt-1">Odoo Development</div>
+                    </div>
+                    <div class="card-custom p-5 rounded-xl">
+                        <div class="text-3xl font-extrabold text-indigo-600 mb-1">v10–v19</div>
+                        <div class="text-xs font-bold uppercase text-slate-500 tracking-wider">Odoo Versions</div>
+                        <div class="text-xs text-slate-400 mt-1">Upgrades & Migrations</div>
+                    </div>
+                    <div class="card-custom p-5 rounded-xl">
+                        <div class="text-3xl font-extrabold text-indigo-600 mb-1">15+</div>
+                        <div class="text-xs font-bold uppercase text-slate-500 tracking-wider">API Integrations</div>
+                        <div class="text-xs text-slate-400 mt-1">Payment & Govt APIs</div>
+                    </div>
+                    <div class="card-custom p-5 rounded-xl">
+                        <div class="text-3xl font-extrabold text-indigo-600 mb-1">3</div>
+                        <div class="text-xs font-bold uppercase text-slate-500 tracking-wider">Key Awards</div>
+                        <div class="text-xs text-slate-400 mt-1">Best Project & Employee Year</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Technical Stack Section -->
-    <section class="py-24 bg-[#01040a]">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-indigo-500 font-black uppercase text-xs tracking-[0.4em] mb-4">The Stack</h2>
-                <h3 class="text-4xl font-bold text-white mb-6">Unrivaled Technical Capability.</h3>
-                <p class="text-slate-400 leading-relaxed mb-8">Mastering the triangle of <strong>Python Backend</strong>, <strong>OWL/JS Frontend</strong>, and <strong>Functional Gap Analysis</strong>.</p>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                        <i class="fas fa-microchip text-indigo-500 w-8 text-center text-xl"></i>
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 px-6 border-b border-slate-200/80 bg-white">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-12">
+                    <h2 class="text-xs uppercase font-extrabold text-indigo-600 tracking-wider mb-2">Work History</h2>
+                    <h3 class="text-3xl font-extrabold text-slate-900">Professional Experience</h3>
+                </div>
+
+                <div class="space-y-8">
+
+                    <!-- Role 1: Pragmatic Techsoft (Feb 2026 - Sep 2026) -->
+                    <div class="card-custom p-7 rounded-2xl reveal">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900">Senior Software Developer</h4>
+                                <p class="text-sm font-medium text-indigo-600">Pragmatic Techsoft Pvt Ltd</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="px-3 py-1 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold rounded-lg inline-block mb-1">February 2026 – September 2026</span>
+                                <p class="text-xs text-slate-400">Pune, India</p>
+                            </div>
+                        </div>
+                        <ul class="text-xs sm:text-sm text-slate-600 space-y-2 mt-4 leading-relaxed">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Worked on a <strong>Government Integrated ERP platform</strong>, building and customizing features across multiple departments.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Met directly with clients to gather business requirements and plan simple, effective technical solutions.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Integrated third-party APIs including <strong>Aadhaar Card, PAN Card</strong>, and government verification services.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Developed custom Odoo workflows for Auctions, Lottery Systems, CRM, Online Portals, and Legal Management.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Integrated payment gateways for online and offline transactions and verified end-to-end workflows.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Role 2: Bista Solutions (Aug 2024 - Feb 2026) -->
+                    <div class="card-custom p-7 rounded-2xl reveal">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900">Full Stack Developer</h4>
+                                <p class="text-sm font-medium text-indigo-600">Bista Solutions</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="px-3 py-1 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold rounded-lg inline-block mb-1">August 2024 – February 2026</span>
+                                <p class="text-xs text-slate-400">Pune / Ahmedabad</p>
+                            </div>
+                        </div>
+                        <ul class="text-xs sm:text-sm text-slate-600 space-y-2 mt-4 leading-relaxed">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Worked as a Full Stack Odoo Developer handling Python backend logic and OWL JS / jQuery frontend components.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Optimized application performance by writing cleaner PostgreSQL database queries and reducing page load times.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Consistently delivered Odoo projects on schedule by effectively managing tasks and prioritizing client requirements.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Created custom QWeb reports and Odoo dashboards to provide clear operational data for managers.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Role 3: Pragmatic Techsoft (Apr 2023 - Aug 2024) -->
+                    <div class="card-custom p-7 rounded-2xl reveal">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900">Senior Odoo Developer</h4>
+                                <p class="text-sm font-medium text-indigo-600">Pragmatic Techsoft Pvt Ltd</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="px-3 py-1 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold rounded-lg inline-block mb-1">April 2023 – August 2024</span>
+                                <p class="text-xs text-slate-400">Pune, India</p>
+                            </div>
+                        </div>
+                        <ul class="text-xs sm:text-sm text-slate-600 space-y-2 mt-4 leading-relaxed">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Designed and developed custom Odoo modules tailored to specific client business workflows.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Executed Odoo module migrations from version 13 to 17, ensuring system stability and smooth upgrades.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Built dynamic OWL-based widgets and UI enhancements to improve overall user experience.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Led a small team of developers, assigning tasks, performing code reviews, and helping team members grow.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Integrated third-party REST APIs including WooCommerce, ShipStation, and payment gateways.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Role 4: I - Hidden Talent (Feb 2021 - Mar 2023) -->
+                    <div class="card-custom p-7 rounded-2xl reveal">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900">Junior Odoo Developer</h4>
+                                <p class="text-sm font-medium text-indigo-600">I - Hidden Talent</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="px-3 py-1 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold rounded-lg inline-block mb-1">February 2021 – March 2023</span>
+                                <p class="text-xs text-slate-400">Ahmedabad, India</p>
+                            </div>
+                        </div>
+                        <ul class="text-xs sm:text-sm text-slate-600 space-y-2 mt-4 leading-relaxed">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Worked primarily on backend logic in Python with frontend support using JavaScript and jQuery.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Developed custom widgets and business features across multiple core Odoo modules.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-check text-indigo-600 mt-1"></i>
+                                <span>Migrated custom Odoo modules across versions 10 through 16 to keep applications updated and stable.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-6 border-b border-slate-200/80 bg-slate-50">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-12">
+                    <h2 class="text-xs uppercase font-extrabold text-indigo-600 tracking-wider mb-2">Portfolio</h2>
+                    <h3 class="text-3xl font-extrabold text-slate-900">Featured Projects</h3>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+
+                    <!-- Project 1: Government Integrated ERP -->
+                    <div class="card-custom p-7 rounded-2xl flex flex-col justify-between reveal">
                         <div>
-                            <p class="text-white font-bold text-sm">Odoo Ecosystem</p>
-                            <p class="text-xs text-slate-500">ORM, QWeb, XML, Custom Widgets, Website & POS Engine</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-bold rounded-full">Government ERP</span>
+                                <span class="text-xs font-semibold text-slate-400">v10–v19 Ready</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2">Government Integrated ERP Platform</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                                Built a complete government ERP platform including public portals, legal tracking, auction systems, lottery management, and payment gateway integrations.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">Aadhaar API</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">PAN API</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">Legal APIs</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">OWL JS</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">Payment Gateways</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                        <i class="fas fa-database text-emerald-500 w-8 text-center text-xl"></i>
+
+                    <!-- Project 2: Restaurant Management System -->
+                    <div class="card-custom p-7 rounded-2xl flex flex-col justify-between reveal">
                         <div>
-                            <p class="text-white font-bold text-sm">Data Architecture</p>
-                            <p class="text-xs text-slate-500">PostgreSQL optimization, multi-version migration (v10 -> v18)</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold rounded-full">Restaurant POS</span>
+                                <span class="text-xs font-semibold text-slate-400">Offline POS</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2">Restaurant Management & POS</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                                Built an Odoo Restaurant Management System to simplify POS sales, order tracking, kitchen order tickets (KOT), inventory management, and delivery updates.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">POS Module</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">Sales & Inventory</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">KDS Ticket Sync</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">REST APIs</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="p-6 rounded-2xl bg-indigo-500/5 border border-indigo-500/10 hover:border-indigo-500/30 transition">
-                    <h4 class="text-indigo-400 font-bold text-xs mb-3 uppercase tracking-tighter">Backend</h4>
-                    <p class="text-sm text-slate-300">Python, XML, Ajax, REST APIs</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-indigo-500/5 border border-indigo-500/10 hover:border-indigo-500/30 transition">
-                    <h4 class="text-indigo-400 font-bold text-xs mb-3 uppercase tracking-tighter">Frontend</h4>
-                    <p class="text-sm text-slate-300">OWL, JS, jQuery, HTML/CSS, Bootstrap</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-indigo-500/5 border border-indigo-500/10 hover:border-indigo-500/30 transition">
-                    <h4 class="text-indigo-400 font-bold text-xs mb-3 uppercase tracking-tighter">Connectors</h4>
-                    <p class="text-sm text-slate-300">WooCommerce, QuickBooks, ShipStation</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-indigo-500/5 border border-indigo-500/10 hover:border-indigo-500/30 transition">
-                    <h4 class="text-indigo-400 font-bold text-xs mb-3 uppercase tracking-tighter">Infrastructure</h4>
-                    <p class="text-sm text-slate-300">Ubuntu, Debian, Server Management</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Portfolio Projects -->
-    <section id="projects" class="py-32 px-6 bg-slate-950">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24">
-                <h2 class="text-white text-5xl font-black mb-6 tracking-tight">Major ERP Implementations</h2>
-                <p class="text-slate-500 max-w-2xl mx-auto">A deep look at high-impact Odoo solutions delivered across global industries.</p>
-            </div>
+                    <!-- Project 3: Packaging & Manufacturing -->
+                    <div class="card-custom p-7 rounded-2xl flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold rounded-full">Manufacturing MRP</span>
+                                <span class="text-xs font-semibold text-slate-400">ShipStation Sync</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2">Packaging & Manufacturing ERP</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                                Customized Odoo manufacturing tools to track production plans, improve user portals, and connect third-party shipping services like ShipStation.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">Odoo MRP</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">BOM Costing</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">ShipStation API</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">QWeb Reports</span>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="grid lg:grid-cols-2 gap-10">
+                    <!-- Project 4: Technician Service App -->
+                    <div class="card-custom p-7 rounded-2xl flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-amber-50 text-amber-700 border border-amber-200 text-xs font-bold rounded-full">Field Service</span>
+                                <span class="text-xs font-semibold text-slate-400">Live GPS Tracking</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2">On-Demand Field Service App</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                                Field service dispatch engine connecting customers with technicians in real-time featuring live GPS tracking, payment wallets, and mobile Push APIs.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">GPS Algorithm</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">Stripe & Razorpay</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">Push APIs</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-semibold rounded-md">AMC Contracts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills & Tools Section -->
+        <section id="skills" class="py-20 px-6 border-b border-slate-200/80 bg-white">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-12">
+                    <h2 class="text-xs uppercase font-extrabold text-indigo-600 tracking-wider mb-2">Skill Set</h2>
+                    <h3 class="text-3xl font-extrabold text-slate-900">Technical Skills & Development Tools</h3>
+                </div>
+
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+                    <div class="card-custom p-6 rounded-2xl">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg mb-4">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 mb-3 text-base">Backend & Frameworks</h4>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li>&bull; Python</li>
+                            <li>&bull; Odoo Framework (v10 through v19)</li>
+                            <li>&bull; Odoo ORM & Custom Modules</li>
+                            <li>&bull; XML Views & Architecture</li>
+                            <li>&bull; QWeb Reports Engine</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-custom p-6 rounded-2xl">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg mb-4">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 mb-3 text-base">Frontend Technologies</h4>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li>&bull; OWL Framework (Odoo Web Library)</li>
+                            <li>&bull; JavaScript & jQuery</li>
+                            <li>&bull; CSS, CSS3, & Bootstrap</li>
+                            <li>&bull; Responsive UI Customization</li>
+                            <li>&bull; Custom Web & POS Widgets</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-custom p-6 rounded-2xl">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-4">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 mb-3 text-base">Databases & APIs</h4>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li>&bull; PostgreSQL Database & Queries</li>
+                            <li>&bull; REST APIs & Web Services</li>
+                            <li>&bull; Payment Gateway Integration</li>
+                            <li>&bull; Shipping & Logistics APIs</li>
+                            <li>&bull; Aadhaar & PAN Government APIs</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-custom p-6 rounded-2xl">
+                        <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg mb-4">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 mb-3 text-base">Functional Skills</h4>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li>&bull; Team Leadership & Code Reviews</li>
+                            <li>&bull; System Integration</li>
+                            <li>&bull; Cloud Deployment (Odoo Cloud)</li>
+                            <li>&bull; Workflow Planning & Feature Specs</li>
+                            <li>&bull; Agile Task Management</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-custom p-6 rounded-2xl sm:col-span-2 md:col-span-2">
+                        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg mb-4">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 mb-3 text-base">Development Tools & AI Assistants</h4>
+                        <div class="grid sm:grid-cols-2 gap-4 text-xs text-slate-600">
+                            <div>
+                                <p class="font-semibold text-slate-800 mb-1">Developer Tools:</p>
+                                <p>&bull; GitHub, Bitbucket, Jira</p>
+                                <p>&bull; Cursor, VS Code, Kilo</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-slate-800 mb-1">AI Assistants:</p>
+                                <p>&bull; Claude 3.7, Antigravity</p>
+                                <p>&bull; AI-assisted code refactoring & debugging</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements & Education -->
+        <section id="achievements" class="py-20 px-6 border-b border-slate-200/80 bg-slate-50">
+            <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
                 
-                <!-- Project 1: Manufacturing -->
-                <div class="project-card p-10 rounded-[40px] flex flex-col h-full group">
-                    <div class="mb-10 flex justify-between items-start">
-                        <div class="w-16 h-16 rounded-2xl bg-indigo-600/10 flex items-center justify-center text-indigo-500 text-3xl group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                            <i class="fas fa-industry"></i>
-                        </div>
-                        <span class="px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-bold uppercase tracking-widest text-indigo-400">v18 Ready</span>
-                    </div>
-                    <h3 class="text-3xl font-bold text-white mb-4">Packaging & Manufacturing ERP</h3>
-                    <p class="text-slate-400 leading-relaxed mb-8 flex-grow">End-to-end automation for die-cutting and lamination industries. Orchestrates the flow from customer inquiry to real-time production and quality inspection.</p>
-                    <div class="space-y-3 mb-10">
-                        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest border-b border-white/5 pb-2">Key Core Modules</p>
-                        <div class="flex flex-wrap gap-2 text-[10px] font-bold text-slate-300">
-                            <span class="skill-tag px-3 py-1 rounded-md">SALES-CRM</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">QC MANAGEMENT</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">MRP & BOM COSTING</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">MACHINE MAINTENANCE</span>
-                        </div>
-                    </div>
-                    <ul class="text-sm text-slate-500 space-y-2">
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-indigo-500"></i> Automated multi-level BOMs</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-indigo-500"></i> Stage-wise Production Tracking</li>
-                    </ul>
-                </div>
+                <div class="md:col-span-2">
+                    <h2 class="text-xs uppercase font-extrabold text-indigo-600 tracking-wider mb-2">Honors</h2>
+                    <h3 class="text-3xl font-extrabold text-slate-900 mb-6">Achievements</h3>
 
-                <!-- Project 2: Restaurant POS -->
-                <div class="project-card p-10 rounded-[40px] flex flex-col h-full group">
-                    <div class="mb-10 flex justify-between items-start">
-                        <div class="w-16 h-16 rounded-2xl bg-emerald-600/10 flex items-center justify-center text-emerald-500 text-3xl group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                            <i class="fas fa-utensils"></i>
+                    <div class="space-y-4">
+                        <div class="card-custom p-5 rounded-xl flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg shrink-0">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">Best Project Award (2025)</h4>
+                                <p class="text-xs text-slate-600 mt-1">Honored for successfully delivering a high-impact project with excellent quality and on-time completion.</p>
+                            </div>
                         </div>
-                        <span class="px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-bold uppercase tracking-widest text-emerald-400">Offline Enabled</span>
-                    </div>
-                    <h3 class="text-3xl font-bold text-white mb-4">Restaurant Enterprise POS</h3>
-                    <p class="text-slate-400 leading-relaxed mb-8 flex-grow">Multi-branch restaurant platform with offline billing, KOT displays, and table management. Integrated with centralized inventory management.</p>
-                    <div class="space-y-3 mb-10">
-                        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest border-b border-white/5 pb-2">Key Core Modules</p>
-                        <div class="flex flex-wrap gap-2 text-[10px] font-bold text-slate-300">
-                            <span class="skill-tag px-3 py-1 rounded-md">OFFLINE BILLING</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">TABLE MGMT</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">KITCHEN DISPLAY (KDS)</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">LOYALTY ENGINE</span>
-                        </div>
-                    </div>
-                    <ul class="text-sm text-slate-500 space-y-2">
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> Real-time KOT syncing</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> Centralized Pricing Engine</li>
-                    </ul>
-                </div>
 
-                <!-- Project 3: On-Demand Service -->
-                <div class="project-card p-10 rounded-[40px] flex flex-col h-full group lg:col-span-2 lg:flex-row gap-12">
-                    <div class="lg:w-1/2">
-                        <div class="w-16 h-16 rounded-2xl bg-orange-600/10 flex items-center justify-center text-orange-500 text-3xl mb-8">
-                            <i class="fas fa-screwdriver-wrench"></i>
+                        <div class="card-custom p-5 rounded-xl flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-lg shrink-0">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">Employee of the Year (2023)</h4>
+                                <p class="text-xs text-slate-600 mt-1">Honored for exceptional contributions and consistent project success.</p>
+                            </div>
                         </div>
-                        <h3 class="text-4xl font-bold text-white mb-6">Uber-Style Service App</h3>
-                        <p class="text-slate-400 leading-relaxed mb-8">Built like Urban Company, this platform connects AC repair technicians to customers in real-time with live GPS tracking and technician-specific mobile apps.</p>
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="px-4 py-2 rounded-lg bg-orange-500/10 text-orange-400 text-xs font-bold uppercase tracking-widest border border-orange-500/20">GPS Tracking</span>
-                            <span class="px-4 py-2 rounded-lg bg-orange-500/10 text-orange-400 text-xs font-bold uppercase tracking-widest border border-orange-500/20">Payment Wallet</span>
-                            <span class="px-4 py-2 rounded-lg bg-orange-500/10 text-orange-400 text-xs font-bold uppercase tracking-widest border border-orange-500/20">Push APIs</span>
-                        </div>
-                    </div>
-                    <div class="lg:w-1/2 bg-white/5 rounded-3xl p-8 border border-white/5 space-y-6">
-                        <p class="text-sm font-bold text-white uppercase tracking-wider">Dynamic Functionality</p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="p-4 bg-black/40 rounded-xl">
-                                <p class="text-white font-bold mb-1">Technician App</p>
-                                <p class="text-[10px] text-slate-500 leading-relaxed">Job assignment, live status, image uploads, and task closure.</p>
+
+                        <div class="card-custom p-5 rounded-xl flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg shrink-0">
+                                <i class="fas fa-star"></i>
                             </div>
-                            <div class="p-4 bg-black/40 rounded-xl">
-                                <p class="text-white font-bold mb-1">CRM & Tracking</p>
-                                <p class="text-[10px] text-slate-500 leading-relaxed">Website lead capture & GPS-based dispatching algorithm.</p>
-                            </div>
-                            <div class="p-4 bg-black/40 rounded-xl">
-                                <p class="text-white font-bold mb-1">Loyalty/AMC</p>
-                                <p class="text-[10px] text-slate-500 leading-relaxed">Package management for recurring AC maintenance contracts.</p>
-                            </div>
-                            <div class="p-4 bg-black/40 rounded-xl">
-                                <p class="text-white font-bold mb-1">Gateway Sync</p>
-                                <p class="text-[10px] text-slate-500 leading-relaxed">Integrated Razorpay, Stripe, and Internal Wallets.</p>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">Employee of the Month (2022)</h4>
+                                <p class="text-xs text-slate-600 mt-1">Recognized for outstanding performance and significant contributions to key projects.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 4: E-Commerce -->
-                <div class="project-card p-10 rounded-[40px] flex flex-col h-full group">
-                    <div class="mb-10 flex justify-between items-start">
-                        <div class="w-16 h-16 rounded-2xl bg-blue-600/10 flex items-center justify-center text-blue-500 text-3xl group-hover:bg-blue-600 group-hover:text-white transition-all">
-                            <i class="fas fa-shopping-bag"></i>
-                        </div>
-                        <span class="px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-bold uppercase tracking-widest text-blue-400">Retail Sync</span>
-                    </div>
-                    <h3 class="text-3xl font-bold text-white mb-4">E-Commerce Ecosystem</h3>
-                    <p class="text-slate-400 leading-relaxed mb-8 flex-grow">A high-conversion retail platform integrated with Odoo for multi-carrier logistics and real-time inventory.</p>
-                    <div class="space-y-3 mb-10">
-                        <div class="flex flex-wrap gap-2 text-[10px] font-bold text-slate-300">
-                            <span class="skill-tag px-3 py-1 rounded-md">VARIANT MGMT</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">SHIPROCKET/FEDEX</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">STRIPE SYNC</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">GUEST CHECKOUT</span>
-                        </div>
-                    </div>
-                </div>
+                <div>
+                    <h2 class="text-xs uppercase font-extrabold text-indigo-600 tracking-wider mb-2">Education</h2>
+                    <h3 class="text-3xl font-extrabold text-slate-900 mb-6">Academic</h3>
 
-                <!-- Project 5: Hotel PMS -->
-                <div class="project-card p-10 rounded-[40px] flex flex-col h-full group">
-                    <div class="mb-10 flex justify-between items-start">
-                        <div class="w-16 h-16 rounded-2xl bg-amber-600/10 flex items-center justify-center text-amber-500 text-3xl group-hover:bg-amber-600 group-hover:text-white transition-all">
-                            <i class="fas fa-hotel"></i>
+                    <div class="card-custom p-6 rounded-xl">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg mb-4">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <span class="px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-bold uppercase tracking-widest text-amber-400">Hospitality</span>
-                    </div>
-                    <h3 class="text-3xl font-bold text-white mb-4">Hotel Reservation & PMS</h3>
-                    <p class="text-slate-400 leading-relaxed mb-8 flex-grow">Property Management System with a live booking calendar, dynamic pricing engines, and housekeeping ticket tracking.</p>
-                    <div class="space-y-3 mb-10">
-                        <div class="flex flex-wrap gap-2 text-[10px] font-bold text-slate-300">
-                            <span class="skill-tag px-3 py-1 rounded-md">AVAILABILITY CALENDAR</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">GUEST CRM</span>
-                            <span class="skill-tag px-3 py-1 rounded-md">PMS-BACKEND</span>
-                        </div>
+                        <h4 class="font-bold text-slate-900 text-base">Bachelor of Science (BSc)</h4>
+                        <p class="text-xs font-semibold text-indigo-600 mt-0.5">Information Technology</p>
+                        <p class="text-xs text-slate-500 mt-2">Jai Narain Vyas University, Jodhpur</p>
+                        <span class="inline-block mt-4 px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-md">2017 – 2020</span>
                     </div>
                 </div>
 
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience -->
-    <section id="experience" class="py-32 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-center text-xs font-black text-indigo-500 uppercase tracking-[0.5em] mb-12">Professional Journey</h2>
+    </main>
+
+    <!-- Footer Contact -->
+    <footer class="py-16 bg-slate-900 text-slate-300 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 class="text-2xl font-bold text-white mb-2">Let's Connect</h3>
+            <p class="text-sm text-slate-400 mb-6 max-w-lg mx-auto">Open for senior Odoo engineering roles, custom ERP developments, and version migration projects.</p>
             
-            <div class="space-y-12 border-l-2 border-indigo-500/20 pl-8 ml-4">
-                <div class="relative">
-                    <div class="absolute -left-[41px] top-0 w-5 h-5 bg-indigo-600 rounded-full border-4 border-slate-900 shadow-lg shadow-indigo-600/40"></div>
-                    <div class="text-xs font-black text-indigo-400 uppercase tracking-widest mb-2">Aug 2024 — Present</div>
-                    <h3 class="text-2xl font-bold text-white">Full Stack Odoo Developer</h3>
-                    <p class="text-slate-400 italic">Bista Solutions (Pune/Ahmedabad)</p>
-                </div>
-                <div class="relative">
-                    <div class="absolute -left-[41px] top-0 w-5 h-5 bg-slate-800 rounded-full border-4 border-slate-900"></div>
-                    <div class="text-xs font-black text-slate-500 uppercase tracking-widest mb-2">2023 — 2024</div>
-                    <h3 class="text-2xl font-bold text-white">Senior Odoo Developer</h3>
-                    <p class="text-slate-400 italic">Pragmatic Techsoft Pvt Ltd (Pune)</p>
-                </div>
-                <div class="relative">
-                    <div class="absolute -left-[41px] top-0 w-5 h-5 bg-slate-800 rounded-full border-4 border-slate-900"></div>
-                    <div class="text-xs font-black text-slate-500 uppercase tracking-widest mb-2">2021 — 2023</div>
-                    <h3 class="text-2xl font-bold text-white">Junior Odoo Developer</h3>
-                    <p class="text-slate-400 italic">I - Hidden Talent(Ahmedabad)</p>
-                </div>
+            <div class="flex justify-center items-center gap-6 mb-10 text-lg">
+                <a href="mailto:i.rajeshgehlot@gmail.com" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-indigo-600 hover:text-white transition-all flex items-center justify-center" title="Email"><i class="far fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/gehlotrajesh" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-indigo-600 hover:text-white transition-all flex items-center justify-center" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/RajeshGehlot" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-indigo-600 hover:text-white transition-all flex items-center justify-center" title="GitHub"><i class="fab fa-github"></i></a>
             </div>
-        </div>
-    </section>
 
-    <!-- Education Section -->
-    <section id="education" class="py-24 px-6 max-w-5xl mx-auto">
-        <div class="p-12 glass-nav rounded-[40px] border border-white/5">
-            <h3 class="text-2xl font-bold text-white mb-10 text-center">Academic Qualifications</h3>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm">
-                    <thead class="bg-white/5 text-indigo-300 font-bold uppercase tracking-widest">
-                        <tr>
-                            <th class="px-6 py-4">Milestone</th>
-                            <th class="px-6 py-4">University</th>
-                            <th class="px-6 py-4 text-center">Year</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-white/5">
-                        <tr class="hover:bg-white/5 transition">
-                            <td class="px-6 py-6 font-bold text-white">BSC-IT</td>
-                            <td class="px-6 py-6">Jai Narain Vyas University, Jodhpur</td>
-                            <td class="px-6 py-6 text-center">2020</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-20 border-t border-white/5 text-center">
-        <div class="max-w-7xl mx-auto px-6">
-            <h3 class="text-3xl font-black text-white mb-6 tracking-tight">Rajesh Gehlot</h3>
-            <p class="text-slate-500 max-w-sm mx-auto mb-10 text-sm">Turning complex business hurdles into elegant, scalable Odoo logic since 2021.</p>
-            <div class="flex justify-center gap-8 text-2xl text-slate-400 mb-12">
-                <a href="https://www.linkedin.com/in/gehlotrajesh/" class="hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/RajeshGehlot" class="hover:text-white transition"><i class="fab fa-github"></i></a>
-                <a href="mailto:i.rajeshgehlot@gmail.com" class="hover:text-white transition"><i class="far fa-envelope"></i></a>
-            </div>
-            <p class="text-[10px] font-black uppercase tracking-[0.6em] text-slate-800">© RAJESH GEHLOT PORTFOLIO</p>
+            <p class="text-xs text-slate-500">&copy; 2026 Rajesh Gehlot. Built with HTML, Tailwind CSS & JavaScript.</p>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
